@@ -1,0 +1,24 @@
+baseURL = "https://joaodlf.com"
+languageCode = "en-us"
+title = "joaodlf.com"
+theme = "basics"
+
+disqusShortname = "joaodlf"
+
+pygmentsStyle = "friendly"
+pygmentsCodeFences = true
+
+uglyurls = true
+
+googleAnalytics = "UA-77340148-1"
+
+[permalinks]
+  post = ":title"
+
+[blackfriday]
+  hrefTargetBlank = true
+
+[params]
+    author = "João Ferreira"
+    github = "joaodlf"
+    twitter = "joaodlf"
