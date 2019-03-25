@@ -1,5 +1,5 @@
 ---
-title: "Go: Rate-limiting (done right)"
+title: "Rate-limiting in Go"
 date: 2017-02-24
 keywords:
 - go
@@ -10,15 +10,12 @@ keywords:
 - algorithm
 ---
 
-A couple of weeks ago I wrote a post on [Data Pipelines with Go, Kafka and Cassandra](/data-pipelines-cassandra-kafka-and-python-and-go.html). Towards the end of the post I presented a very rudimentary (and wrong) approach to rate-limiting (in the specific case of Cassandra write timeouts).
+A couple of weeks ago I wrote a post on [Data Pipelines with Go, Kafka and Cassandra](/data-pipelines-cassandra-kafka-and-python-and-go.html). I feel like this is a good opportunity to write about rate limiting.
 
-I wanted to emphasize how performant the solution is for us - _"It's so fast, we have to slow it down!!"_... In hindsight, I shouldn't have ended it that way. In my defence, rate-limiting wasn't the topic (or aim) of that post.
+Why would you need rate limiting in your data pipeline? Realistically, heavy data streams can't always be processed
+at the most optimal speed. There are constant limitations: Hardware; Network; Data spikes, etc.
 
-Realistically, heavy data streams can't always be processed at the most optimal speed. There are constant limitations: Hardware; Network; Data spikes, etc. One thing is for sure: Throwing sleep timers around isn't a good way to handle the issue.
-
-## Rectifying
-
-This time, I'd like to propose (what feels like) a more elegant solution. This seems to work pretty well for us when it comes to Cassandra timeouts, but it should be applicable in other areas that benefit from rate-limiting.
+In this specific case, I am going to address Cassandra timeouts, and how rate limiting can come to the rescue.
 
 The solution is broken down into 2 areas.
 
