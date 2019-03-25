@@ -373,22 +373,3 @@ func Process(msg *sarama.ConsumerMessage, session *gocql.Session) {
     }
 }
 ```
-
-### Conclusions
-
-I'll keep it simple: Go is fast. So. Very. Fast.
-
-We gained **tremendous** speed improvements in our Kafka consumers. So much, in fact, that we had to limit
-our consume rate as to avoid Cassandra timeouts:
-
-```go
-// Sleep for 1ms to give Cassandra some breathing room...
-time.Sleep(time.Millisecond * 1)
-go Process(msg, cassSession)
-```
-
-Yes, our Cassandra test cluster doesn't have the same specs as production, but still - We had never been
-able to push Cassandra so hard. We _literally_ had to put a 1ms sleep time between each message. And you
-know what? It's still much faster than our old solution.
-
-If you would like to know more about how we got around our Data Pipeline issues, shoot me a message below.
