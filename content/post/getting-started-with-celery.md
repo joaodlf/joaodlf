@@ -45,9 +45,72 @@ celery = Celery(__name__, broker="redis://:<password>@<host>:6379/0")
 
 The Redis example above assumes you have setup a password. I find Redis a suitable and easy to use broker for development environments.
 
-### Usage
+### Workers
 
-I'm going to be using Flask to exemplify common Celery use cases.
+You will need at least one celery worker running to be able to execute tasks:
+
+```bash
+celery worker -A run.celery -l DEBUG
+```
+
+A note on the flags:
+
+- `-A` is where you tell the Celery worker where to find your application.
+- `-l` is the log level.
+
+Celery works in a distributed fashion, which means you can have workers running on multiple machines - ideal as your ingestion rate grows.
+
+### Tasks
+
+Celery is all about the concept of tasks, which are just functions wrapped with celery's task decorator:
+
+```python
+@celery.task()
+def send_welcome_email(email: str):
+    # Logic to send an email here...
+```
 
 #### Delay
 
+`.delay()` is the straightforward way to send a task message:
+
+```python
+send_welcome_email.delay("joao@example.com")
+```
+
+This will send this task to the broker, which in turn will be processed by one of the workers. Execution will continue past `.delay()` in an asynchronous fashion.
+
+#### Autoretry
+
+Following our example above, lets assume we need to send the email to an ESP (such as Mailchimp or SendGrid), these services will typically offer an API we can use in order to communicate with the service. APIs can, and will, fail. Celery allows us to retry our tasks in case of failures, we could modify our task like so:
+
+```python
+@celery.task(bind=True)
+def send_welcome_email(self, email):
+    response = requests.post("broken endpoint API", params={"email": email})
+
+    try:
+        response.raise_for_status()
+    except requests.exceptions.HTTPError as e:
+        raise self.retry(exc=e)
+```
+
+Forcing a retry can be helpful in some cases, but in this case we already know what exception to expect, for this reason we can use `autoretry_for`:
+
+```python
+@celery.task(autoretry_for=(requests.exceptions.HTTPError,))
+def send_welcome_email(email):
+    response = requests.post("broken endpoint API", params={"email": email})
+    response.raise_for_status()
+```
+
+We can take this a step further by introducing an [exponential backoff](https://en.wikipedia.org/wiki/Exponential_backoff) via the `retry_backoff` option:
+
+```python
+@celery.task(autoretry_for=(requests.exceptions.HTTPError,), retry_backoff=True)
+def send_welcome_email(email):
+    response = requests.post("broken endpoint API", params={"email": email})
+    response.raise_for_status()
+```
+
+Might not fit all use cases, but still very handy to have it available by default!
