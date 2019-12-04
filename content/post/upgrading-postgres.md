@@ -11,7 +11,7 @@ The following are my notes on how to upgrade a PostgreSQL server. A few things t
 
 - I run a **CentOS** machine - you should be able to follow along with most OSs and package managers, though.
 - This is a **v11 to v12** upgrade - if this is not the case for you, just edit the commands.
-- This upgrade strategy **will** incur on some database downtime - this should be minimal if you prepare properly.
+- This upgrade strategy **will** incur on some database downtime - this should be minimal if you properly prepare.
 
 
 ```
