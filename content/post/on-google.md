@@ -46,3 +46,5 @@ I don't know why I used Google Calendar so much in the past, considering I basic
 That leaves **photo storage** and **heating**. Photo storage I'm finding it quite hard to migrate away from. Honestly, Google Photos is a really good product from a UX perspective. I don't even bother using the default Photos app anymore on my iPhone. Apple needs to step up their game here and just copy whatever Google is doing. Scrolling on Google Photos feels so intuitive, so easy to navigate through years of photos.
 
 Heating. I guess I just haven't researched enough. Google Nest isn't even that good of product, in my experience. But it is convenient to turn the heating on preemptively before coming home. The app is terrible, though.
+
+**edit:** as I post this, I've also remembered about Google Analytics. Which does run on this exact page. Oh well. One more thing to consider.
