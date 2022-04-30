@@ -11,6 +11,7 @@ keywords:
 
 
 Since last year, I've made a real effort to reduce my dependency on Google products. Here is what I use(d) Google for:
+
 * Personal email.
 * Browser.
 * Search engine.
