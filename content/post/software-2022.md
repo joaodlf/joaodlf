@@ -1,6 +1,6 @@
 ---
 title: "Software 2022"
-date: 2022-04-30
+date: 2022-06-22
 keywords:
 - software
 ---
@@ -11,7 +11,8 @@ This is the software I run on my machine. Maybe I'll make this into a yearly thi
 * **Development**:
 	* **PyCharm**. Hard requirement. JetBrains keeps on improving their software, I cannot imagine working without it.
 	* **Postgres.app**. Unless Docker is truly needed, Postgres.app serves my purposes just fine.
-	* **Paw**. Don't use this as much as I used to, but it's still in the arsenal. I've sort of started replacing Paw with just... Unit tests. Writing concise tests for my HTTP APIs is enough assurance for me these days.
+	* **Paw**. Don't use this as much as I used to, but it's still in the arsenal.
+	* **Docker**.
 * **Firefox**
 	* **uBlock Origin**. The internet is unusable without this.
 	* **Tab Wrangler**. I have chronic open tab disorder, this helps closing down tabs that haven't been touched in a while.  
@@ -23,4 +24,3 @@ This is the software I run on my machine. Maybe I'll make this into a yearly thi
 * **Maestral**. I still make good use of my Dropbox, but the application is horrible for resource usage. Maestral fixes that.
 * **Alfred**. Hard requirement. Probably one of the first things I install. I also disable most of the Spotlight features in macOS since Alfred does it all much better.
 * **iterm2**, with everything running under **tmux**.
-* **Docker** quite useful in some scenarios. It's not my default reaction when I start a new project, but yeah.
