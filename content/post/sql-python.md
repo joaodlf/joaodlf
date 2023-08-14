@@ -11,7 +11,7 @@ keywords:
 - django orm
 ---
 
-I have been writing a lot more Go this past year. For those not familiar, Go favours a non-ORM, non-query-builder approach to interacting with databases. This comes naturally due to the [sql package](https://pkg.go.dev/database/sql): A common interface to be used alongside database drivers. It's very common to see actual SQL in Go, even in large projects. On the other hand, Python dot not have anything in the standard library that supports database interaction, this has always been a problem for the community to solve. There are many ORMs and query builders for Python: 
+I have been writing a lot more Go this past year. For those not familiar, Go favours a non-ORM, non-query-builder approach to interacting with databases. This comes naturally due to the [sql package](https://pkg.go.dev/database/sql): A common interface to be used alongside database drivers. It's very common to see actual SQL in Go, even in large projects. On the other hand, Python does not have anything in the standard library that supports database interaction, this has always been a problem for the community to solve. There are many ORMs and query builders for Python: 
 - [SQLAlchemy](https://www.sqlalchemy.org/) 
 - [Django ORM](https://docs.djangoproject.com/en/4.2/#the-model-layer) 
 - [Peewee](http://docs.peewee-orm.com/en/latest/) (my personal favourite)
