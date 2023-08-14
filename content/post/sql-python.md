@@ -79,6 +79,7 @@ Our first implementation is going to be **PostgreSQL** via [psycopg3](https://ww
 # external/postgres.py
 
 import psycopg
+from psycopg.rows import class_row  
 
 # Load up your config from somewhere...
 from config import get_config
@@ -107,8 +108,7 @@ Firstly, we setup the connection. Secondly, a function that returns psycopg curs
 We now implement the repository:
 ```python
 # user/repository.py
-from psycopg.rows import class_row  
-from external.postgres import conn
+from external.postgres import conn, new_cursor
 
 class UserPostgreSQL(UserRepository):
     def new(self, new_row: User) -> int:
